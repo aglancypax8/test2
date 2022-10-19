@@ -31,7 +31,7 @@ jobs:
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
           echo "Got release version ${{ steps.release.outputs.version }}"
 
-      - id: Sleep for 30 seconds
+      - id: Sleep
         uses: jakejarvis/wait-action@master
         with:
           time: '30s'
