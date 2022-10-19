@@ -22,7 +22,7 @@ jobs:
         if: env.CHANGE_FREEZE != 'false'
         run: echo "Scheduled Releases can only be published during approved maintenance windows."
 
-      - name: increments_version
+      - name: Increments Version
         uses: rymndhng/release-on-push-action@master
         if: env.CHANGE_FREEZE == 'false'
         with:
@@ -30,8 +30,7 @@ jobs:
           bump_version_scheme: patch
           use_github_release_notes: true
 
-      - id: outputs
-        name: Check Output Parameters
+      - name: Check Output Parameters
         run: |
           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
           echo "Got release version ${{ steps.release.outputs.version }}"
