@@ -22,7 +22,7 @@ jobs:
         if: env.CHANGE_FREEZE != 'false'
         run: echo "Scheduled Releases can only be published during approved maintenance windows."
 
-      - id: increments version
+      - name: increments_version
         uses: rymndhng/release-on-push-action@master
         if: env.CHANGE_FREEZE == 'false'
         with:
