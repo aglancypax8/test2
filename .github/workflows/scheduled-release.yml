@@ -1,37 +1,37 @@
-# name: Scheduled Release
+name: Scheduled Release
 
-# on:
-#   schedule:
-#     # To update the schedule, navigate to https://crontab.guru/. Here you can easily set the parameters for when the schedule should run. 
-#     # This is currently set to run at 4:00am every Tuesday.
-#     - cron: '0 4 * * 2'
+on:
+  schedule:
+    # To update the schedule, navigate to https://crontab.guru/. Here you can easily set the parameters for when the schedule should run. 
+    # This is currently set to run at 4:00am every Tuesday.
+    - cron: '0 4 * * 2'
 
-# env:
-#     # If set to true. this will disable any new releases from being published.
-#     CHANGE_FREEZE: false
+env:
+    # If set to true. this will disable any new releases from being published.
+    CHANGE_FREEZE: false
 
-# jobs:
-#   release-on-push:
-#     runs-on: ubuntu-latest
-#     env:
-#       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#     steps:
+jobs:
+  release-on-push:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
 
-#       - name: Change Freeze Implemented 
-#         if: env.CHANGE_FREEZE != 'false'
-#         run: echo "Scheduled Releases can only be published during approved maintenance windows."
+      - name: Change Freeze Implemented 
+        if: env.CHANGE_FREEZE != 'false'
+        run: echo "Scheduled Releases can only be published during approved maintenance windows."
 
-#       - id: increments version
-#         uses: rymndhng/release-on-push-action@master
-#         if: env.CHANGE_FREEZE == 'false'
-#         with:
-#           # increments the patch version by 1. e.g. 1.0.0 > 1.0.1
-#           bump_version_scheme: patch
-#           use_github_release_notes: true
+      - id: increments version
+        uses: rymndhng/release-on-push-action@master
+        if: env.CHANGE_FREEZE == 'false'
+        with:
+          # increments the patch version by 1. e.g. 1.0.0 > 1.0.1
+          bump_version_scheme: patch
+          use_github_release_notes: true
 
-#       - id: outputs
-#         name: Check Output Parameters
-#         run: |
-#           echo "Got tag name ${{ steps.release.outputs.tag_name }}"
-#           echo "Got release version ${{ steps.release.outputs.version }}"
+      - id: outputs
+        name: Check Output Parameters
+        run: |
+          echo "Got tag name ${{ steps.release.outputs.tag_name }}"
+          echo "Got release version ${{ steps.release.outputs.version }}"
 
