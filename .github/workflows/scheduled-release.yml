@@ -12,6 +12,7 @@ env:
     CHANGE_FREEZE: false
 
 jobs:
+  
   release-on-push:
     runs-on: ubuntu-latest
     env:
@@ -24,6 +25,7 @@ jobs:
 
       - name: Increments Version
         uses: rymndhng/release-on-push-action@master
+        permissions: read-all|write-all
         if: env.CHANGE_FREEZE == 'false'
         with:
           # increments the patch version by 1. e.g. 1.0.0 > 1.0.1
