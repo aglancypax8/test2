@@ -19,7 +19,7 @@ jobs:
     permissions:
       contents: write
     env:
-      GITHUB_TOKEN: ${{ secrets.pat }}
+      GITHUB_TOKEN: ${{ secrets.actions }}
     steps:
 
       - name: Change Freeze Implemented 
